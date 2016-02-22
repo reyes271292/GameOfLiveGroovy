@@ -24,14 +24,10 @@ class Organism{
     def neighbors = []
     for(int fila=0;fila<matrix.size;fila++){
       for(int col=0;col<matrix.size;col++){
-          println "Valores : "+x+" "+y
-          
-          if(!matrix[x][y]){
+          if(x!=fila || y!=col){
             println "Vecinos "+matrix[fila][col]
             neighbors << matrix[fila][col]
           }
-          
-          
       }
     }
     println "---- "+neighbors
