@@ -22,16 +22,19 @@ class Organism{
     println "Matriz "+matrix
     int pos=0
     def neighbors = []
-    coordinates_for_neighbors.each {coordinates->
-      //if(x.between?(0, matrix.row_count - 1) and
-      //   y.between?(0, matrix.column_count - 1)) then
-      coordinates.each{
-        // neighbors << cells[x][y]
-        print " "+it
+    for(int fila=0;fila<matrix.size;fila++){
+      for(int col=0;col<matrix.size;col++){
+          println "Valores : "+x+" "+y
+          
+          if(!matrix[x][y]){
+            println "Vecinos "+matrix[fila][col]
+            neighbors << matrix[fila][col]
+          }
+          
+          
       }
-    neighbors=[0,0,0,0,0,1,0,1]
-    
     }
+    println "---- "+neighbors
     neighbors
   }
     
