@@ -7,16 +7,7 @@ class OrganismSpec extends Specification{
   def setup(){
     organism=new Organism()
   }
-  def "Add two numbers"(){
-    given:
-      Integer a=2
-      Integer b=3
-    when:
-      def sum=organism.sumar(a,b)
-
-    then:
-      sum==5
-  }
+  
   def "given the coordinate with [1, 1], should get around set coordinates"(){
     given:
       Integer x=1
@@ -82,7 +73,7 @@ class OrganismSpec extends Specification{
       def neighborhood = [0,0,0,0,1]
       def living_cell = 1
     when:
-      def rule1=organism.might_die_because_has_fewer_than_two_neighbours(living_cell, neighborhood)
+      def rule1=organism.might_die_because_has_fewer_than_two_neighbours( neighborhood)
     then:
       rule1==true
   }
@@ -92,7 +83,7 @@ class OrganismSpec extends Specification{
       def neighborhood = [1,1,0,0,0]
       def living_cell = 1
     when:
-      def rule2=organism.might_live_because_has_two_or_three_neighbours(living_cell, neighborhood)
+      def rule2=organism.might_live_because_has_two_or_three_neighbours( neighborhood)
     then:
       rule2==true
   }
@@ -102,7 +93,7 @@ class OrganismSpec extends Specification{
       def neighborhood = [1,1,1,1,0,0]
       def living_cell = 1
     when:
-      def rule3=organism.might_die_because_has_more_than_tree_neighbours(living_cell, neighborhood)
+      def rule3=organism.might_die_because_has_more_than_tree_neighbours(neighborhood)
     then:
       rule3==true
   }
@@ -112,14 +103,14 @@ class OrganismSpec extends Specification{
       def neighborhood = [1,1,1,0,0]
       def died_cell=0
     when:
-      def rule4=organism.might_reborn_because_has_exactly_three_neighbours(died_cell,neighborhood)
+      def rule4=organism.might_reborn_because_has_exactly_three_neighbours(neighborhood)
     then:
       rule4==true
   }
-
+  
   def "given an organism [[0,0,0],[0,1,0],[1,0,1]], after the rules applied the next state should be [[0,0,0],[0,1,0],[0,1,0]]" (){
     given:
-
+      
     when:
       def cells = organism.next_state()
     then:
