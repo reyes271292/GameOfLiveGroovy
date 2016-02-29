@@ -1,11 +1,33 @@
 package com.makingdevs
 class Organism{
   def cells=[]
-  def next_state=[]
+  def new_state=[]
   Organism(){
     cells = [[0,0,0],[0,1,0],[1,0,1]]
-    next_state = [[0,0,0],[0,1,0],[1,0,1]]
+    new_state = [[0,0,0],[0,1,0],[1,0,1]]
   }
+
+  def populate(cells){
+    cells = this.cells
+    //println cells
+  }
+
+  def evolve(){
+    cells.eachWithIndex{ row, index->
+      row.eachWithIndex{ element, indx->
+        println "evolve:---"+element
+      }
+    }
+  }
+   
+  def reassign(){
+    new_state.eachWithIndex{row,x->
+      new_state.eachWithIndex{element,j->
+        cells[x][j] = element
+      }
+    }
+  }
+    
   
   def coordinates(x, y){
     [[x - 1, y - 1], [x - 1, y], [x - 1, y + 1],
@@ -52,27 +74,41 @@ class Organism{
     for(int fila=0;fila<matrix.size;fila++){
       for(int col=0;col<matrix.size;col++){
         def neighbors = find_neighbors(fila,col)
+        //println "Vecinos: "+neighbors
         switch(matrix[fila][col]) {
           case 0:
             if(might_die_because_has_fewer_than_two_neighbours( neighbors) || might_die_because_has_more_than_tree_neighbours( neighbors)){
-              next_state[fila][col] = 0 
-              
+              new_state[fila][col] = 0 
+              //println "0: "+fila+" "+col
             }
 
-            if(might_live_because_has_two_or_three_neighbours( neighbors)){
-              next_state[fila][col] = 1 
-              
+            else if(might_live_because_has_two_or_three_neighbours( neighbors)){
+              new_state[fila][col] = 1 
+              //println "0,1: "+fila+" "+col
             }
           break
           case 1:
-            next_state[fila][col] = might_reborn_because_has_exactly_three_neighbours(neighbors) ? 1 : 0
-            
+            new_state[fila][col] = might_reborn_because_has_exactly_three_neighbours(neighbors) ? 1 : 0
+            //println "1: "+fila+" "+col
           break
         }
       }
     }
-    println "last next-state: "+next_state
-    next_state
+    println "last next-state: "+new_state
+    new_state
+  }
+
+  static void main(args){
+    Organism organismo=new Organism()
+    for (int iterar=0;iterar<3;iterar++){
+      System.out.println ("\f")
+      organismo.evolve()
+      organismo.next_state()
+      organismo.reassign()
+      sleep(1000)
+      
+    }
+    
   }
     
 }

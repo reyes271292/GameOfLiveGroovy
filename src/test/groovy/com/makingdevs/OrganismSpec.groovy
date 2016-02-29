@@ -108,13 +108,13 @@ class OrganismSpec extends Specification{
       rule4==true
   }
   
-  def "given an organism [[0,0,0],[0,1,0],[1,0,1]], after the rules applied the next state should be [[0,0,0],[0,1,0],[0,1,0]]" (){
+  def "given an organism [[0,0,0],[0,1,0],[1,0,1]], after the rules applied the next state should be [[1,1,1],[1,0,1],[0,1,0]]" (){
     given:
       
     when:
       def cells = organism.next_state()
     then:
-      cells==[[0,0,0],[0,1,0],[0,1,0]]
+      cells==[[1,1,1],[1,0,1],[0,1,0]]
   }
 
 }
