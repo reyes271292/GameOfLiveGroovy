@@ -8,7 +8,7 @@ class Organism{
   }
 
   def populate(cells){
-    cells = this.cells
+    this.cells = cells
     //println cells
   }
 
