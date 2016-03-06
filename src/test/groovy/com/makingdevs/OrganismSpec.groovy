@@ -3,9 +3,9 @@ package com.makingdevs
 import spock.lang.Specification 
 
 class OrganismSpec extends Specification{
-  private Organism organism
+  private OrganismCells organism
   def setup(){
-    organism=new Organism()
+    organism=new OrganismCells()
   }
   
   def "given the coordinate with [1, 1], should get around set coordinates"(){
