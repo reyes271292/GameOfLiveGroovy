@@ -3,8 +3,8 @@ class OrganismCells{
   def cells=[]
   def new_state=[]
   OrganismCells(){
-    cells = [[0,0,0],[0,1,0],[1,0,1]]
-    new_state = [[0,0,0],[0,1,0],[1,0,1]]
+    this.cells = [[0,0,0],[0,1,0],[1,0,1]]
+    this.new_state = [[0,0,0],[0,1,0],[1,0,1]]
   }
 
   def populate(cells){
@@ -13,7 +13,7 @@ class OrganismCells{
   }
 
   def evolve(){
-    cells.eachWithIndex{ row, index->
+    this.cells.eachWithIndex{ row, index->
       row.eachWithIndex{ element, indx->
         println "evolve:---"+element
       }
@@ -21,9 +21,9 @@ class OrganismCells{
   }
    
   def reassign(){
-    new_state.eachWithIndex{row,x->
-      new_state.eachWithIndex{element,j->
-        cells[x][j] = element
+    this.new_state.eachWithIndex{row,x->
+      this.new_state.eachWithIndex{element,j->
+        this.cells[x][j] = element
       }
     }
   }
@@ -37,7 +37,7 @@ class OrganismCells{
 
   def find_neighbors(x, y){
     def coordinates_for_neighbors = coordinates(x, y)
-    def matrix = cells
+    def matrix = this.cells
     //println "Matriz "+matrix
     def neighbors = []
     for(int fila=0;fila<matrix.size;fila++){
@@ -69,7 +69,7 @@ class OrganismCells{
   }
 
   def next_state(){
-    def matrix = cells
+    def matrix = this.cells
     
     for(int fila=0;fila<matrix.size;fila++){
       for(int col=0;col<matrix.size;col++){
@@ -78,24 +78,24 @@ class OrganismCells{
         switch(matrix[fila][col]) {
           case 0:
             if(might_die_because_has_fewer_than_two_neighbours( neighbors) || might_die_because_has_more_than_tree_neighbours( neighbors)){
-              new_state[fila][col] = 0 
+              this.new_state[fila][col] = 0 
               //println "0: "+fila+" "+col
             }
 
             else if(might_live_because_has_two_or_three_neighbours( neighbors)){
-              new_state[fila][col] = 1 
+              this.new_state[fila][col] = 1 
               //println "0,1: "+fila+" "+col
             }
           break
           case 1:
-            new_state[fila][col] = might_reborn_because_has_exactly_three_neighbours(neighbors) ? 1 : 0
+            this.new_state[fila][col] = might_reborn_because_has_exactly_three_neighbours(neighbors) ? 1 : 0
             //println "1: "+fila+" "+col
           break
         }
       }
     }
     println "last next-state: "+new_state
-    new_state
+    this.new_state
   }
 
   
