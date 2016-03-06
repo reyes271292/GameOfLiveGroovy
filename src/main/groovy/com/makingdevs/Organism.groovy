@@ -1,8 +1,8 @@
 package com.makingdevs
-class Organism{
+class OrganismCells{
   def cells=[]
   def new_state=[]
-  Organism(){
+  OrganismCells(){
     cells = [[0,0,0],[0,1,0],[1,0,1]]
     new_state = [[0,0,0],[0,1,0],[1,0,1]]
   }
@@ -98,17 +98,18 @@ class Organism{
     new_state
   }
 
-  static void main(args){
-    Organism organismo=new Organism()
-    for (int iterar=0;iterar<3;iterar++){
-      System.out.println ("\f")
-      organismo.evolve()
-      organismo.next_state()
-      organismo.reassign()
-      sleep(1000)
-      
-    }
-    
-  }
+  
     
 }
+
+OrganismCells organismo=new OrganismCells()
+(1..3).each{
+  System.out.println ("\f")
+  organismo.evolve()
+  organismo.next_state()
+  organismo.reassign()
+  sleep(1000)
+
+}
+    
+  
